@@ -177,6 +177,8 @@ sub handle_games()
         $games{$id}{'vs'} = $attrs{'vs'};
 
         $games{$id}{'q'} = $attrs{'q'};
+        $games{$id}{'d'} = $attrs{'d'};
+        $games{$id}{'t'} = $attrs{'t'};
 
         $team2gameid{$games{$id}{'h'}} = $id;
         $team2gameid{$games{$id}{'v'}} = $id;
@@ -202,11 +204,32 @@ sub fill_db()
 
 
 
-    my $sth = $dbh->prepare("INSERT INTO games (week, year, hometeam, homescore, visitorteam, visitorscore, quarter) VALUE (?,?,?,?,?,?,?)");
+    my $sth = $dbh->prepare("INSERT INTO games (week, year, gametime, day, hometeam, homescore, visitorteam, visitorscore, quarter) VALUE (?,?,?,?,?,?,?,?,?)");
 
     foreach my $key (keys %games)
     {
-        $sth->execute($week_num, $year, $games{$key}{'h'}, $games{$key}{'hs'}, $games{$key}{'v'}, $games{$key}{'vs'}, $games{$key}{'q'}); 
+        # convert the quarter into the correct numeric value
+        my $quarter = $games{$key}{'q'};
+        my $input = 0;
+        if ($quarter =~ "F") { $input = 5; }
+        elsif ($quarter =~ "1") { $input = 1; }
+        elsif ($quarter =~ "2") { $input = 2; }
+        elsif ($quarter =~ "3") { $input = 3; }
+        elsif ($quarter =~ "4") { $input = 4; }
+
+        # create a data-time entry for this game
+        my $year = substr($key, 0, 4);
+        my $month = substr($key, 4, 2);
+        my $day = substr($key, 6, 2);
+        my $time = $games{$key}{'t'};
+        $time =~ /^(\d+):(\d+)$/;
+        my $hr = $1;
+        my $min = $2;
+
+        my $datetime = sprintf("%04d-%02d-%02d %02d:%02d:00", $year, $month, $day, $hr, $min);
+
+        #print "$datetime\n";
+        $sth->execute($week_num, $year, $datetime, $games{$key}{'d'}, $games{$key}{'h'}, $games{$key}{'hs'}, $games{$key}{'v'}, $games{$key}{'vs'}, $input); 
     }
 
     $dbh->disconnect();

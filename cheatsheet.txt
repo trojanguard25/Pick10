@@ -1,0 +1,15 @@
+mysql:
+
+// show databases available
+show databases;
+
+// select database
+use <database_name>;
+
+// show tables in a specific database
+show tables;
+
+// insert data into a table
+INSERT INTO <tablename> (<col1>, <col2>) VALUES('<data1>', '<data2>' )
+
+

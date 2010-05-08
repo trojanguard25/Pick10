@@ -1,4 +1,4 @@
-mysql:
+mysql: http://nparikh.org/unix/mysql.php
 
 // show databases available
 show databases;
@@ -11,5 +11,8 @@ show tables;
 
 // insert data into a table
 INSERT INTO <tablename> (<col1>, <col2>) VALUES('<data1>', '<data2>' )
+
+// display the design of a table
+describe <tablename>;
 
 

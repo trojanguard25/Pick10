@@ -255,7 +255,7 @@ sub PermuteRecurse()
    }
    else
    {
-      print @$gamesPicked;
+      #print @$gamesPicked;
 
       $PermutationCount++;
       my %score = ();
@@ -280,7 +280,7 @@ sub PermuteRecurse()
       my $max = 0;
       foreach my $key (keys %score)
       {
-         if (exists($score{$key}) and $score{$key} > $max)
+         if (exists($score{$key}) and $score{$key} >= $max)
          {
             $max = $score{$key};
             print "$key = $max\n";
@@ -293,7 +293,10 @@ sub PermuteRecurse()
          {
             foreach my $pick (%{$picks{$key}})
             {
-               print "$pick ";
+               unless ( $pick eq 'wins' )
+               {
+                  print "$pick ";
+               }
             }
             print "\n";
             $picks{$key}{'wins'}++;

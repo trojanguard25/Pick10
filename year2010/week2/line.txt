@@ -1,0 +1,16 @@
+Dal  8.5 Chi
+Atl    7   Arz
+Car 4 TB
+Bal   1   Cin
+Cle   3   KC
+Den  3   Sea
+Phi  3.5  Det
+GB  12   Buf
+Ind  5.5  NYG
+Min   6   Mia
+NE  1.5  NYJ
+Oak  6   StL
+SD  8.5  Jac
+Ten  4.5  Pit
+Was  2  Hou
+NO  4.5  SF

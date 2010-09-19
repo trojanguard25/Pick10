@@ -1,0 +1,15 @@
+NO   4.5   Min
+Dal   3   Was
+Arz  3.5  StL
+Atl   0  Pit
+Chi   7   Det
+GB  0  Phi
+Ind   3   Hou
+Jac  1.5  Den
+Mia   2   Buf
+NYG  7  Car
+NE   6   Cin
+Sea  1   SF
+TB   1   Cle
+Ten  7   Oak
+NYJ  3   Bal

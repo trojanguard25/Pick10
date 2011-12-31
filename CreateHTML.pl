@@ -47,6 +47,11 @@ sub parse_line($)
             my $loser  = uc($3);
             my $spread = $2;
 
+            if ($spread =~ /Pk/i)
+            {
+               $spread = 0;
+            }
+
             my $id = $team2gameid{$winner};
 
             if ( defined( $id ) and exists( $games{$id} ) )
